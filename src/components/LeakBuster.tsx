@@ -103,7 +103,7 @@ export default function LeakBuster() {
             }))
             .force("charge", d3.forceManyBody<GraphNode>().strength((d) => d.id === "root" ? -1000 : (d.label ? -300 : -30)))
             .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("collide", d3.forceCollide().radius(d => d.radius + 5).iterations(2));
+            .force("collide", d3.forceCollide<GraphNode>().radius((d) => d.radius + 5).iterations(2));
 
         // Links
         const link = svg.append("g")
